@@ -1,0 +1,109 @@
+
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>JS testing platform</title>
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="styling.css">
+
+</head>
+
+<body>
+	<h1>Quick Quiz</h1>
+	<div class="container">
+<div class="sectionContainer">
+<h3>What is the capital of france?</h3>
+<label>Paris</label><input type="checkbox" value="Paris">
+<label>London</label><input type="checkbox" value="London">
+<label>Brussels</label><input type="checkbox" value="Brussels">
+</div>
+
+<div class="sectionContainer">
+<h3>Complete the name of this famous person who discovered America - Christopher _?</h3>
+<label>Churchill</label><input type="checkbox" value="Churchill">
+<label>Columbus</label><input type="checkbox" value="Columbus">
+<label>Reeve</label><input type="checkbox" value="Reeve">
+</div>
+<div class="sectionContainer">
+		<h3>What is the famous London landmark that was built by Sir Christoper Wren?</h3>
+		<label>St Paul's Cathedral</label><input type="checkbox" value="st-pauls">
+		<label>Marble Arch</label><input type="checkbox" value="marble-arch">
+		<label>The Tower of London</label><input type="checkbox" value="tower-of-london">
+		</div>
+<div class="sectionContainer">
+<h3>Which programming language shares it's name with a type of gem?</h3>
+<label>Scala</label><input type="checkbox" value="Scala">
+<label>Python</label><input type="checkbox" value="Python">
+<label>Ruby</label><input type="checkbox" value="Ruby">
+</div>
+<div class="sectionContainer">
+<h3>Which Danish prince was the subject and title of a famous Shakespeare play</h3>
+<label>Macbeth</label><input type="checkbox" value="Macbeth">
+<label>Hamlet</label><input type="checkbox" value="Hamlet">
+<label>Othello</label><input type="checkbox" value="Othello">
+</div>
+<div class="sectionContainer">
+<h3>Which James Bond film made in 2006, was Daniel Craig's first appearance as Bond?</h3>
+<label>Quantum of Solace</label><input type="checkbox" value="Quantum of Solace">
+<label>Casino Royale</label><input type="checkbox" value="Casino Royale">
+<label>Spectre</label><input type="checkbox" value="Spectre">
+</div>
+</div>
+
+<section id="score">Total Score:</section>
+
+<form id="form">
+	<label>Name:</label> <br><br>
+<input type="text" value="name" name="name"/> <br><br>
+<label>Score: <span id="scoreSpan"></span></label> <br><br>
+<input type="number" id="number" value="number" name="number"/>
+
+</form>
+
+	
+<script>
+
+var container = document.querySelector('.container');
+var correctAnswers = ['Paris', 'Columbus', 'st-pauls', 'Ruby', 'Hamlet', 'Casino Royale'];
+var score = document.getElementById('score');
+var counter = 0;
+
+form.style.display = 'none';
+var para = document.createElement('p');
+container.addEventListener('change', (e) => {
+e.preventDefault();
+var element = e.target.value;
+
+if (correctAnswers.includes(element) == true) {
+
+
+	var parent = e.target.parentNode;
+	para.textContent = "Correct! Well done!"
+para.style.color = '#fff';
+	parent.appendChild(para);
+		counter += 1;
+		score.textContent = "Total Score: " + counter;
+ var allInputs = parent.children;
+for (var i = 0; i < allInputs.length; i++){
+	allInputs[i].disabled = true
+}
+} else {
+
+	var mainParent = e.target.parentNode;
+	var allInputs = mainParent.children;
+	for (var i = 0; i < allInputs.length; i++){
+	allInputs[i].disabled = true;
+	}
+	para.textContent = "X unlucky, wrong answer!";
+	para.style.color = 'red';
+	mainParent.appendChild(para);
+}
+
+
+});
+
+
+</script>
+</body>
+</html>
